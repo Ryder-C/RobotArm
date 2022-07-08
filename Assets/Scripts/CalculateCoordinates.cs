@@ -17,7 +17,7 @@ public class CalculateCoordinates : MonoBehaviour {
 
     private Vector3 originPos;
 
-    private float minRadius = 15f;
+    private float minRadius = 20f;
     private float l1 = 15f;
     private float l2 = 16f;
 
