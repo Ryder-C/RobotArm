@@ -5,6 +5,7 @@ using UnityEngine;
 public class DragTarget : MonoBehaviour {
 
     public Transform returnPos;
+    public Transform center;
 
     private float yOffset;
     private float xOffset;
@@ -17,7 +18,7 @@ public class DragTarget : MonoBehaviour {
         xOffset = transform.position.x - returnPos.position.x;
         yOffset = transform.position.y - returnPos.position.y;
         zOffset = transform.position.z - returnPos.position.z;
-        Debug.Log(string.Format("xOffset: {0}, yOffset: {1}, zOffset: {2}", xOffset, yOffset, zOffset));
+        // Debug.Log(string.Format("xOffset: {0}, yOffset: {1}, zOffset: {2}", xOffset, yOffset, zOffset));
     }
 
     private void OnMouseDown() {
@@ -26,11 +27,14 @@ public class DragTarget : MonoBehaviour {
     }
 
     private void OnMouseUp() {
-        gameObject.transform.position = new Vector3(returnPos.position.x + xOffset, returnPos.position.y + yOffset, returnPos.position.z + zOffset);
+        // gameObject.transform.position = new Vector3(returnPos.position.x + xOffset, returnPos.position.y + yOffset, returnPos.position.z + zOffset);
     }
 
     private void OnMouseDrag() {
-        transform.position = GetMouseWorldPos() + mOffset;
+        Vector3 newPos = GetMouseWorldPos() + mOffset;
+        if(Vector2.Distance(new Vector2(newPos.x, newPos.z), new Vector2(center.position.x, center.position.z)) >= 2f) {
+            gameObject.transform.position = newPos;
+        }
     }
 
     private Vector3 GetMouseWorldPos() {
