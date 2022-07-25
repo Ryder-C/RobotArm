@@ -10,11 +10,14 @@ public class DragTarget : MonoBehaviour {
     private float yOffset;
     private float xOffset;
     private float zOffset;
+
+    private bool dragging;
     
     private Vector3 mOffset;
     private float mZCoord;
 
     private void Start() {
+        dragging = false;
         xOffset = transform.position.x - returnPos.position.x;
         yOffset = transform.position.y - returnPos.position.y;
         zOffset = transform.position.z - returnPos.position.z;
@@ -24,9 +27,11 @@ public class DragTarget : MonoBehaviour {
     private void OnMouseDown() {
         mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
         mOffset = gameObject.transform.position - GetMouseWorldPos();
+        dragging = true;
     }
 
     private void OnMouseUp() {
+        dragging = false;
         // gameObject.transform.position = new Vector3(returnPos.position.x + xOffset, returnPos.position.y + yOffset, returnPos.position.z + zOffset);
     }
 
@@ -45,5 +50,9 @@ public class DragTarget : MonoBehaviour {
         mousePoint.z = mZCoord;
 
         return Camera.main.ScreenToWorldPoint(mousePoint);
+    }
+
+    public bool getDragging() {
+        return dragging;
     }
 }
