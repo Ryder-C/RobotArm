@@ -31,10 +31,11 @@ public class DragTarget : MonoBehaviour {
     }
 
     private void OnMouseDrag() {
-        Vector3 newPos = GetMouseWorldPos() + mOffset;
-        if(Vector2.Distance(new Vector2(newPos.x, newPos.z), new Vector2(center.position.x, center.position.z)) >= 2f) {
-            gameObject.transform.position = newPos;
-        }
+        // Vector3 newPos = GetMouseWorldPos() + mOffset;
+        // if(Vector2.Distance(new Vector2(newPos.x, newPos.z), new Vector2(center.position.x, center.position.z)) >= 2f) {
+        //     gameObject.transform.position = newPos;
+        // }
+        gameObject.transform.position = GetMouseWorldPos() + mOffset;
     }
 
     private Vector3 GetMouseWorldPos() {

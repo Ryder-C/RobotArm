@@ -17,18 +17,20 @@ public class CalculateCoordinates : MonoBehaviour {
 
     private Vector3 originPos;
 
-    private float minRadius = 20f;
-    private float l1 = 15f;
-    private float l2 = 16f;
+    private float minRadius = 15f;
+    private float l1 = 15.25f;
+    private float l2 = 14.7f;
+    private float maxlength;
 
     void Start() {
+        maxlength = l1 + l2;
         originPos = origin.transform.position;
     }
 
     void Update() {
         Vector2 newAngles = cartesionToDualPolar(-target.transform.position.x * 10, target.transform.position.z * 10);
         firstSpin.transform.localRotation = Quaternion.Euler(0, newAngles.x, 0);
-        secondSpin.transform.localRotation = Quaternion.Euler(0, newAngles.y - 31f, 0);
+        secondSpin.transform.localRotation = Quaternion.Euler(0, newAngles.y - maxlength, 0);
 
         carriage.transform.position = new Vector3(0, Mathf.Clamp(target.transform.position.y + 1, 1.75f, 3.75f), 0);
 
