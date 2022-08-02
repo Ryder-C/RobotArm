@@ -19,6 +19,7 @@ public class CameraSwitcher : MonoBehaviour {
         sceneCam.SetActive(true);
         mainCanv.SetActive(false);
         sceneCanv.SetActive(true);
+        topCam.SetActive(false);
 
         robotController.GetComponent<CameraControllerBlender>().enabled = false;
     }
