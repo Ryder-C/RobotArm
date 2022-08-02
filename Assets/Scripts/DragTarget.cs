@@ -11,7 +11,7 @@ public class DragTarget : MonoBehaviour {
     private float xOffset;
     private float zOffset;
 
-    private bool dragging;
+    private bool dragging = false;
     
     private Vector3 mOffset;
     private float mZCoord;
